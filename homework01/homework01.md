@@ -51,3 +51,12 @@
     - сделать `select * from persons;` во второй сессии
     - идите ли вы новую запись и если да то почему?
       > вижу, т.к. выполнена фиксация транзакции в текущей сессии (`commit;`)
+
+|session 1|session 2|
+|---|---|
+|![/homework01/session1.jpg]|![/homework01/session2.jpg]|
+
+
+![/homework01/session1.jpg]
+
+![/homework01/session2.jpg]
