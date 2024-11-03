@@ -52,11 +52,6 @@
     - идите ли вы новую запись и если да то почему?
       > вижу, т.к. выполнена фиксация транзакции в текущей сессии (`commit;`)
 
-|session 1|session 2|
+|сессия 1|сессия 2|
 |---|---|
-|![/homework01/session1.jpg]|![/homework01/session2.jpg]|
-
-
-![/homework01/session1.jpg]
-
-![/homework01/session2.jpg]
+|![сессия 1](/homework01/session1.jpg)|![сессия 2](/homework01/session2.jpg)|
