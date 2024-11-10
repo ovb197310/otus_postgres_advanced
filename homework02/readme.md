@@ -1,16 +1,19 @@
-#Установка и настройка PostgteSQL в контейнере Docker
-##Создание ВМ
+# Установка и настройка PostgteSQL в контейнере Docker
+## Создание ВМ
 
-Создаем ВМ 2VCP / 2 GB / 10 GB HDD / прерываемая / Ubuntu 24.02 / vm-docker-postgres
+Создаем ВМ 
+
+> 2VCP / 2 GB / 10 GB HDD / прерываемая / Ubuntu 24.02
+
+> Имя **vm-docker-postgres**
 
 ## Подготовка ВМ
-установлено обновление (`sudo apt update; sudo apt upgrade`)
+- установлено обновление (`sudo apt update; sudo apt upgrade`)
+- установлен оконный менеджер (`sudo apt install screen`)
 
-установлен оконный менеджер (`sudo apt install screen`)
 
-
-##Установка docker
-[ставим докер по инструкции](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository)
+## Установка docker
+ставим докер по [инструкции](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository)
 
 ```
 sudo apt-get update
@@ -29,20 +32,20 @@ sudo apt-get -y install docker-ce docker-ce-cli containerd.io docker-buildx-plug
 
 ```
 
-##Подготовка
+## Подготовка
 
 - Добавляем текущего пользователя в группу docker
 
-`sudo usermod -aG docker balitskiiov`
+  `sudo usermod -aG docker balitskiiov`
 
 
 - создаем каталог для БД
 
-`sudo mkdir -p /var/lib/postgres`
+  `sudo mkdir -p /var/lib/postgres`
 
-##Выполнение задания
+## Выполнение задания
 
-###Запуск сервера
+### Запуск сервера
 
 от пользователя **balitskiiov** запускаем **postgresql**, в соответствии с заданием, руководствуясь [описанием](https://hub.docker.com/_/postgres)
 
@@ -56,7 +59,7 @@ docker run -d \
 	postgres:14
 ```
 
-###Создание образа клиента
+### Создание образа клиента
 
 <details open>
 
@@ -89,47 +92,47 @@ ENTRYPOINT ["psql"]
 
 `docker build -t ovb/psql-client .`
 
-![](build client.png)
+![Результат создания](buildClient.png)
 
 
-###Проверка подключения и наполнение данными
+### Проверка подключения и наполнение данными
 
 - подключаемся извне - **успешно**
 
-`psql -h 84.201.169.31 -U postgres -W`
+  `psql -h 84.201.169.31 -U postgres -W`
 
 - по адресу хоста докер - **успешно**
 
-`docker run --rm -it --name postgresql-client ovb/psql-client -h 172.17.0.1 -U postgres -W`
+  `docker run --rm -it --name postgresql-client ovb/psql-client -h 172.17.0.1 -U postgres -W`
 
 - создаем БД **otus_test** и таблицу с данными
 
-`create database otus_test;`
+  `create database otus_test;`
 
-`\c otus_test`
+  `\c otus_test`
 
 ```
-create table persons(id serial, first_name text, second_name text);
-insert into persons(first_name, second_name) values('ivan', 'ivanov');
-insert into persons(first_name, second_name) values('petr', 'petrov');
-select * from persons;
+  create table persons(id serial, first_name text, second_name text);
+  insert into persons(first_name, second_name) values('ivan', 'ivanov');
+  insert into persons(first_name, second_name) values('petr', 'petrov');
+  select * from persons;
 ```
 
-![](select00.png)
+![результат select](select00.png)
 
 - по внутреннему адресу хоста - **успешно**
 
-`docker run --rm -it --name postgresql-client ovb/psql-client -h 10.131.0.34 -U postgres -W otus_test`
+  `docker run --rm -it --name postgresql-client ovb/psql-client -h 10.131.0.34 -U postgres -W otus_test`
 
 - по внешнему адресу хоста - **успешно**
 
-`docker run --rm -it --name postgresql-client ovb/psql-client -h 84.201.169.31 -U postgres -W otus_test`
+  `docker run --rm -it --name postgresql-client ovb/psql-client -h 84.201.169.31 -U postgres -W otus_test`
 
-###Проверка сохранности данных
+### Проверка сохранности данных
 
 - удаляем контейнер сервера PostgreSQL
 
-`docker remove -f HW02`
+  `docker remove -f HW02`
 
 - запускаем повторно
 
@@ -145,15 +148,15 @@ docker run -d \
 
 - присоединяемся
 
-`docker run --rm -it --name postgresql-client ovb/psql-client -h 10.131.0.34 -U postgres -W otus_test`
+  `docker run --rm -it --name postgresql-client ovb/psql-client -h 10.131.0.34 -U postgres -W otus_test`
 
 - выбираем данные - **данные на месте**
 
-`select * from persons;`
+  `select * from persons;`
 
-![](select02.png)
+![повторный select](select02.png)
 
 
 
-##Работа выполнена
+## Работа выполнена
 Вопросов не возникло.
