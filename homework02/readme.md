@@ -1,18 +1,20 @@
 # Установка и настройка PostgteSQL в контейнере Docker
+
 ## Создание ВМ
 
-Создаем ВМ 
+Создаем ВМ
 
 > 2VCP / 2 GB / 10 GB HDD / прерываемая / Ubuntu 24.02
 
 > Имя **vm-docker-postgres**
 
 ## Подготовка ВМ
+
 - установлено обновление (`sudo apt update; sudo apt upgrade`)
 - установлен оконный менеджер (`sudo apt install screen`)
 
-
 ## Установка docker
+
 ставим докер по [инструкции](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository)
 
 ```
@@ -38,7 +40,6 @@ sudo apt-get -y install docker-ce docker-ce-cli containerd.io docker-buildx-plug
 
   `sudo usermod -aG docker balitskiiov`
 
-
 - создаем каталог для БД
 
   `sudo mkdir -p /var/lib/postgres`
@@ -51,12 +52,12 @@ sudo apt-get -y install docker-ce docker-ce-cli containerd.io docker-buildx-plug
 
 ```
 docker run -d \
-	--name HW02 \
-	-e POSTGRES_PASSWORD=123 \
-	-p 5432:5432 \
-	-e PGDATA=/var/lib/postgresql/data/pgdata \
-	-v /var/lib/postgres:/var/lib/postgresql/data \
-	postgres:14
+ --name HW02 \
+ -e POSTGRES_PASSWORD=123 \
+ -p 5432:5432 \
+ -e PGDATA=/var/lib/postgresql/data/pgdata \
+ -v /var/lib/postgres:/var/lib/postgresql/data \
+ postgres:14
 ```
 
 ### Создание образа клиента
@@ -88,12 +89,12 @@ USER postgresql-client
 
 ENTRYPOINT ["psql"]
 ```
+
 </details>
 
 `docker build -t ovb/psql-client .`
 
 ![Результат создания](buildClient.png)
-
 
 ### Проверка подключения и наполнение данными
 
@@ -138,12 +139,12 @@ ENTRYPOINT ["psql"]
 
 ```
 docker run -d \
-	--name HW02 \
-	-e POSTGRES_PASSWORD=123 \
-	-p 5432:5432 \
-	-e PGDATA=/var/lib/postgresql/data/pgdata \
-	-v /var/lib/postgres:/var/lib/postgresql/data \
-	postgres:14
+ --name HW02 \
+ -e POSTGRES_PASSWORD=123 \
+ -p 5432:5432 \
+ -e PGDATA=/var/lib/postgresql/data/pgdata \
+ -v /var/lib/postgres:/var/lib/postgresql/data \
+ postgres:14
 ```
 
 - присоединяемся
@@ -156,8 +157,7 @@ docker run -d \
 
 ![повторный select](select02.png)
 
-
-
 ## Работа выполнена
+
 ВМ удалена.
 Вопросов не возникло.

@@ -1,6 +1,7 @@
 # Использование Managed Service for PostgreSQL
 
 ## Создаем кластер PostgreSQL с использованием Managed Service for PostgreSQL в Yandex.Cloud
+
 - Создаем кластер в WEB-консоль
 
 ![создание01](create01.jpg)
@@ -15,18 +16,17 @@
 
 ## проверим статус кластера в консоли yc
 
-![yc cluster](yc-cluster.jpg "Кластера postgres") 
+![yc cluster](yc-cluster.jpg "Кластера postgres")
 
 - хосты в кластере
 
-![yc hosts 01](yc-cluster-hosts01.png "Кластера postgres - хосты") 
+![yc hosts 01](yc-cluster-hosts01.png "Кластера postgres - хосты")
 
 - проверка разрешения FQDN кластера в IP
 
-![yc hosts ns 01](yc-ns01.png) 
+![yc hosts ns 01](yc-ns01.png)
 
-![yc hosts ns 02](yc-ns02.png) 
-
+![yc hosts ns 02](yc-ns02.png)
 
 ## Подключение к БД
 
@@ -50,7 +50,7 @@ psql "host=rc1d-7cjifbvs60b0wtv1.mdb.yandexcloud.net \
     target_session_attrs=read-write"
 ```
 
-![yc hosts con 01](connect01.png) 
+![yc hosts con 01](connect01.png)
 
 - подключаемся по имени FQDN кластера к мастеру
 
@@ -63,8 +63,7 @@ psql "host=c-c9qf7sovjgc58qvvh7pi.rw.mdb.yandexcloud.net \
     target_session_attrs=read-write"
 ```
 
-![yc hosts con 02](connetc02.png) 
-
+![yc hosts con 02](connetc02.png)
 
 ## Расширение кластера
 
@@ -121,8 +120,6 @@ psql "host=c-c9qf7sovjgc58qvvh7pi.ro.mdb.yandexcloud.net \
 ```
 
 ![readonly](readonly-replica.png)
-
-
 
 ## Удаляем кластер
 
