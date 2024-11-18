@@ -2,19 +2,17 @@
 
 ## Создание кластера
 
-![master01](vk/vk-01.png "Мастер 01") 
+![master01](vk/vk-01.png "Мастер 01")
 
-![master01](vk/vk-02.png "Мастер 01") 
+![master01](vk/vk-02.png "Мастер 01")
 
 С первого раза не получилось, решался вопрос через тех.поддержку
 
-![master01](vk/vk-04.png "Мастер 01") 
+![master01](vk/vk-04.png "Мастер 01")
 
 ### Ответ техподдержки
 
 > на текущий момент есть визуальная ошибка при создании каждой БД, в итоге создание завершается успешно. Разработчики в курсе этой проблемы, решение будет в ближайшее время.
-
-
 
 после общения с тех.поддержкой и повторного создания - получилось создать и присоедениться
 
@@ -30,59 +28,55 @@
 
 По умолчанию - **accept all**, чтобы закрыть доступ **ВСЕМ** нужно придумать какое-то "левое" правило, удаление всех правил на входящий трафик приводит к полному доступу на **все порты для всех**
 
-
 ## Реплика и масштабирование
 
 ### в отличие от ЯО, для доступа к read-only реплике ее нужно создать, поддерживается множество реплик в разных зонах (3 зоны)
 
-![master01](vk/vk-07.png "Мастер 01") 
+![master01](vk/vk-07.png "Мастер 01")
 
 ### Реплика создана, доступ только на чтение
 
 выполнение операций на мастере
 
-![master01](vk/vk-08.png "Мастер 01") 
+![master01](vk/vk-08.png "Мастер 01")
 
 выполнение операций на реплике
 
-![master01](vk/vk-10.png "Мастер 01") 
-
+![master01](vk/vk-10.png "Мастер 01")
 
 ### Горизонтальное масштабирование с Single в Cluster не поддерживается (не найдено в документации и в консоли)
 
-##  Создание кластера из 3х нод
+## Создание кластера из 3х нод
 
-![master01](vk/vk-cl-01.png "Мастер 01") 
+![master01](vk/vk-cl-01.png "Мастер 01")
 
-![master01](vk/vk-cl-02.png "Мастер 01") 
+![master01](vk/vk-cl-02.png "Мастер 01")
 
-![master01](vk/vk-cl-03.png "Мастер 01") 
+![master01](vk/vk-cl-03.png "Мастер 01")
 
 И снова визуализируется ошибка, просто ждем
 
-![master01](vk/vk-cl-04.png "Мастер 01") 
+![master01](vk/vk-cl-04.png "Мастер 01")
 
 и после ожидания
 
-![master01](vk/vk-cl-05.png "Мастер 01") 
+![master01](vk/vk-cl-05.png "Мастер 01")
 
 подключаемся
 
-![master01](vk/vk-cl-06.png "Мастер 01") 
+![master01](vk/vk-cl-06.png "Мастер 01")
 
 меняем мастера
 
-![master01](vk/vk-cl-07.png "Мастер 01") 
+![master01](vk/vk-cl-07.png "Мастер 01")
 
 ждем
 
-![master01](vk/vk-cl-08.png "Мастер 01") 
-
+![master01](vk/vk-cl-08.png "Мастер 01")
 
 и проверяем
 
-![master01](vk/vk-cl-09.png "Мастер 01") 
-
+![master01](vk/vk-cl-09.png "Мастер 01")
 
 # Создание и работа с кластером PostgreSQL в Google Cloud platform
 
@@ -91,61 +85,59 @@
 мастер проводит по шагам, ничего сложного нет.
 
 Особенность:
+
 - получаем суперпользователя postgres, и полный доступ к СУБД.
 - тонкая настройка ресурсов - от одного vCPU
 
-![master01](google/google-pg-01.png "Мастер 01") 
+![master01](google/google-pg-01.png "Мастер 01")
 
-![master02](google/google-pg-02.png "Мастер 02") 
+![master02](google/google-pg-02.png "Мастер 02")
 
-![master03](google/google-pg-03.png "Мастер 03") 
+![master03](google/google-pg-03.png "Мастер 03")
 
-![master04](google/google-pg-04.png "Мастер 04") 
+![master04](google/google-pg-04.png "Мастер 04")
 
-![master05](google/google-pg-05.png "Мастер 05") 
+![master05](google/google-pg-05.png "Мастер 05")
 
-### Создание 
+### Создание
 
-![master06](google/google-pg-06.png "Мастер 06") 
+![master06](google/google-pg-06.png "Мастер 06")
 
-![master07](google/google-pg-07.png "Мастер 07") 
-
+![master07](google/google-pg-07.png "Мастер 07")
 
 ### Инстансе создавался долго (субъективно), выполнен backup
 
-![master08](google/google-pg-08.png "Мастер 08") 
+![master08](google/google-pg-08.png "Мастер 08")
 
 ## Подключение к инстансу
 
 параметры подключения понятны
 
-![master07](google/google-connection-params.png "Мастер 07") 
+![master07](google/google-connection-params.png "Мастер 07")
 
 по умолчанию кластер не доступен - порт 5432 закрыт
 
-![master07](google/google-block-address.png "Мастер 07") 
+![master07](google/google-block-address.png "Мастер 07")
 
 нужно добавить авторизованные сети в свойствах инстанса (**Connections** -> **Networking** -> **Authorized networks**)
 
-![master07](google/google-add-address.png "Мастер 07") 
+![master07](google/google-add-address.png "Мастер 07")
 
 Порт открыт
 
-![master07](google/google-open-address.png "Мастер 07") 
+![master07](google/google-open-address.png "Мастер 07")
 
 Доступ к БД есть
 
-![master07](google/google-connect-success.png "Мастер 07") 
+![master07](google/google-connect-success.png "Мастер 07")
 
 Создаем БД через **psql**
 
-![master07](google/create-database.png "Мастер 07") 
-
+![master07](google/create-database.png "Мастер 07")
 
 Или можно создать через WEB-консоль
 
-![master07](google/create-database-console.png "Мастер 07") 
-
+![master07](google/create-database-console.png "Мастер 07")
 
 ## Отказоустойчивость и доступность
 
@@ -153,32 +145,29 @@
 
 Добавление простое - добавляем зону, и ждем создание хоста инстанса в другой зоне минут 10 (зависит от размера БД)
 
-![master07](google/zones.png "Мастер 07") 
-
+![master07](google/zones.png "Мастер 07")
 
 ## Реплика
 
 ### в отличие от ЯО, для доступа к read-only реплике ее нужно создать, поддерживается множество реплик в разных регионах и зонах
 
-![master07](google/replicas.png "Мастер 07") 
+![master07](google/replicas.png "Мастер 07")
 
 - создаем реплику, задаем параметры
 
-![master07](google/replicas-01.png "Мастер 07") 
+![master07](google/replicas-01.png "Мастер 07")
 
 - получаем реплику
 
-![master07](google/replicas-02.png "Мастер 07") 
+![master07](google/replicas-02.png "Мастер 07")
 
 - параметры подключения к реплике
 
-![master07](google/replicas-03.png "Мастер 07") 
+![master07](google/replicas-03.png "Мастер 07")
 
 - подключение к реплике
 
-![master07](google/replicas-05.png "Мастер 07") 
-
-
+![master07](google/replicas-05.png "Мастер 07")
 
 # Создание кластера в SberCloud
 
@@ -186,31 +175,31 @@
 
 отказоустойчивый кластер не поддерживается, создание с "мастером" простое.
 
-![master07](sber/sber-01.png "Мастер 07") 
+![master07](sber/sber-01.png "Мастер 07")
 
-![master07](sber/sber-02.png "Мастер 07") 
+![master07](sber/sber-02.png "Мастер 07")
 
-![master07](sber/sber-03.png "Мастер 07") 
+![master07](sber/sber-03.png "Мастер 07")
 
 тюнинг "тонкий"
 
-![master07](sber/sber-04.png "Мастер 07") 
+![master07](sber/sber-04.png "Мастер 07")
 
-![master07](sber/sber-05.png "Мастер 07") 
+![master07](sber/sber-05.png "Мастер 07")
 
-![master07](sber/sber-06.png "Мастер 07") 
+![master07](sber/sber-06.png "Мастер 07")
 
 И ошибка, надо идти в поддержку вероятно
 
-![master07](sber/sber-07.png "Мастер 07") 
+![master07](sber/sber-07.png "Мастер 07")
 
 Со второй попытки - ошибка
 
-![master07](sber/sber-08.png "Мастер 07") 
+![master07](sber/sber-08.png "Мастер 07")
 
 Чат оперативно не решил
 
-![master07](sber/sber-09.png "Мастер 07") 
+![master07](sber/sber-09.png "Мастер 07")
 
 ## Сыроватое решение, как кажется... (работал в Evolution, а оно обрезанное)
 
@@ -221,9 +210,8 @@
 
 ## Повторение
 
-![master07](sber1/sber01.png "Мастер 07") 
+![master07](sber1/sber01.png "Мастер 07")
 
 ## Резюме: жду подключение Advanced платформы
 
 > Точных сроков нет, все заявки рассматриваются в порядке очереди. Ожидайте, с мы с вами свяжемся
-
