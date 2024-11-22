@@ -1,0 +1,11 @@
+#cloud-config
+datasource:
+  Ec2:
+    strict_id: false
+ssh_pwauth: no
+users:
+- name: balitskiiov
+  sudo: 'ALL=(ALL) NOPASSWD:ALL'
+  shell: /bin/bash
+  ssh_authorized_keys:
+  - ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAgEAziMfjsq7fqgL9Bt6A8xG18ZY4ZyGbqr12FKXlMIOM2l5Lrnd5iqV+lhURMMAee1nc1vXzVrrO4hWaMsxvGEbW6QlvGrJ+Fhq511knLsnxdMjBi0rqyVjOfd2x9GCovWnLeG/ay9ZmWlIboBg/6Zx4V3oEmq7y7meP4ESaKAHRVL3xwKH6BhPTjLsDLz+oK69Dsb3H/BdwUbSAtOvcqszaACCXjwHmU6KNXBAlq8DWN2Lml3Ckqtw+uRdDQEg+5NbfAKEyshxjKhY6uwW0N3EuNa8+u/Ku0zOx4moIvR5NElcOq5VWV03D4KiSKOqOjc6H6FYCE6s6BlZrXL00hskoygSBvAmwMfz1Cq5zaNB2pOPx8FJIhVe/Qtx+zC19+kUuyIp0Hxyt2ZAtVXoIqSTuu7U9liEGhLgMb3SRgn7KggSDDauBLhkJq3iJujNLaWUfMHMdS7DHTl8AwIOabqq3DZpnRZ4HfS1VH94ucvd+zWRM/iNoeiQmUrdKjVrTlCJruPJ1AZMISNTrlSlLWTPWXxRvQ98GIXEc5qnexqnodpCPtFq/FY0zv0NqIhpLn7wb1JUJJt57u/1P+g16915uUD7Dq9G8NrsJjEzW3xU8Upea2/9+LH4EOpoGdFVMXDSVEO04WFB+lbSoiA00n/7UUAlLyfwNwugtxv4KY6YxBk= BalitskiiOV-230430
