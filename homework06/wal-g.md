@@ -1,7 +1,8 @@
 # Использование wal-g
 
 адаптировано для Linux Mint 22
-работы проводятся для кластерах
+
+работы проводятся для кластерах:
 
 Ver|Cluster|Port|Status|Owner|Data directory|Log file
 ---|---|---|---|---|---|---
@@ -9,6 +10,7 @@ Ver|Cluster|Port|Status|Owner|Data directory|Log file
 16|test|5433|online|postgres|/var/lib/postgresql/16/test|/var/log/postgresql/postgresql-16-test.log
 
 файлы конфигурации в каталогах
+
  `/etc/postgresql/16/main`
  `/etc/postgresql/16/test`
 
@@ -76,7 +78,16 @@ sudo systemctl postgresql@16-main restart
 проверяем применение параметров
 
 ```sql
-select name, sourcefile, setting from pg_settings where name in ('wal_level','archive_mode', 'archive_command', 'archive_timeout', 'restore_command' );
+select name, sourcefile, setting 
+    from pg_settings 
+    where name in 
+        (
+        'wal_level',
+        'archive_mode',
+        'archive_command',
+        'archive_timeout', 
+        'restore_command'
+        );
 ```
 
 name|sourcefile|setting                                      
@@ -86,7 +97,6 @@ name|sourcefile|setting
  archive_timeout | /etc/postgresql/16/main/conf.d/wal-g.conf | 60
  restore_command | /etc/postgresql/16/main/conf.d/wal-g.conf | /usr/local/bin/wal-g wal-fetch "%f" "%p" >> /var/log/postgresql/restore.log 2>&1
  wal_level       | /etc/postgresql/16/main/conf.d/wal-g.conf | replica
-
 
 и в логах `/var/log/postgresql/archive.log`
 
@@ -127,26 +137,7 @@ backup_name|modified|wal_file_name|storage_name
 ---|---|---|---
 base_00000001000000000000000A| 2024-12-04T21:51:53+03:00| 00000001000000000000000A| default
 
-### "дольем" данные
 
-```sql
-\c otus
-insert into test(i) select * from generate_series(101, 200);
-```
-
-### full backup
-
-```bash
-wal-g backup-push /var/lib/postgresql/16/main/
-wal-g backup-list
-```
-
-результат
-
-backup_name|modified|wal_file_name|storage_name
----|---|---|---
-base_00000001000000000000000A|2024-12-04T21:51:53+03:00| 00000001000000000000000A|default
-base_00000001000000000000000C_D_00000001000000000000000A|2024-12-04T21:56:24+03:00|00000001000000000000000C|default
 
 ### удаляем каталог с данными в кластере **test**, восстанавливаем из полной копии кластера **main**
 
