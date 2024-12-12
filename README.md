@@ -6,3 +6,6 @@
 - [Домашнее задание №4 **PostgreSQL и VKcloud**](homework04/readme.md "ДЗ №4")
 - [Домашнее задание №5 **Настройка PostgreSQL**](homework05/readme.md "ДЗ №5")
 - [Домашнее задание №6 **Углубленное изучение бэкапов**](homework06/readme.md "ДЗ №6")
+- Домашнее задание №7 **Кластер Patroni**
+  - [**Config**](homework07/readme.md "ДЗ №7")
+  - [**Backup - in progress**](homework07/readme-backup.md "ДЗ №7")
