@@ -430,7 +430,7 @@ Cluster: adsite02 (7447406115886761416)
 - перепроверяем статус кластера
 
 ```bash
-patronictl -c /etc/patroni/config.yml switchover
+patronictl -c /etc/patroni/config.yml list
 ```
 
  Cluster: adsite02 (7447406115886761416)
@@ -455,7 +455,7 @@ global_defs {
 }
 
 
-vrrp_script myhealth {
+vrrp_script pg_health {
     script "/bin/nc -z -w 2 127.0.0.1 5432"
     interval 10
     user nobody
@@ -478,7 +478,7 @@ vrrp_instance VI_1 {
     }
 
     track_script {
-        myhealth
+        pg_health
     }
 }
 ```
