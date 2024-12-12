@@ -516,12 +516,12 @@ defaults
 
 listen stats
   mode http
-  bind 172.16.104.100:7000
+  bind *:7000
   stats enable
   stats uri /
 
 listen adsite02_6432
-  bind 172.16.104.100:6432
+  bind *:6432
   option httpchk GET /primary
   http-check expect status 200
   default-server inter 15s fall 3 rise 2 on-marked-down shutdown-sessions
@@ -529,7 +529,7 @@ listen adsite02_6432
   server z14-3521-pgsql:5432 z14-3521-pgsql:5432 maxconn 1000 check port 8008
 
 listen adsite02_7432
-  bind 172.16.104.100:7432
+  bind *:7432
   option httpchk GET /replica
   http-check expect status 200
   default-server inter 15s fall 3 rise 2 on-marked-down shutdown-sessions
