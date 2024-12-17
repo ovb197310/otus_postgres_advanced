@@ -46,7 +46,7 @@ CREATE DATABASE backupdb;
 #\c backupdb
 
 BEGIN;
-CREATE ROLE backup WITH LOGIN;
+CREATE ROLE backup WITH LOGIN REPLICATION;
 GRANT USAGE ON SCHEMA pg_catalog TO backup;
 GRANT EXECUTE ON FUNCTION pg_catalog.current_setting(text) TO backup;
 GRANT EXECUTE ON FUNCTION pg_catalog.set_config(text, text, boolean) TO backup;
@@ -73,7 +73,6 @@ host    backupdb        backup             172.16.104.109/24               trust
 ```
 
 - config SSH trusted (skip detail)
-
 
 - full backup
 
@@ -122,6 +121,8 @@ pg_probackup backup -B /var/pg_probackup/ -b FULL --instance=adsite02 --stream  
   --remote-host=z14-3521-pgsql  --remote-user=postgres -U backup -d backupdb \
   --external-dirs=/etc/postgresql
 ```
+
+(partial)
 
 Instance|  Version|  ID|      Recovery Time|           Mode|  WAL Mode|  TLI|   Time|  Data|   WAL|  Zratio|  Start LSN|   Stop LSN|    Status
 ---|---|---|---|---|---|---|---|---|---|---|---|---|---
