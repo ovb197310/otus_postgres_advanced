@@ -9,3 +9,4 @@
 - Домашнее задание №7 **Кластер Patroni**
   - [**Config**](homework07/readme.md "ДЗ №7")
   - [**Backup**](homework07/pg_probackup.md "ДЗ №7")
+- [Домашнее задание №8 **Оптимизация настроек Postgresql**](homework08/readme.md "ДЗ №8")

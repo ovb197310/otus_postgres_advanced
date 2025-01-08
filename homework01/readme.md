@@ -14,7 +14,7 @@
 
 установлен оконный менеджер (`sudo apt install screen`)
 
-установлен postgresql последней версии (`sudo apt installl postgresql`)
+установлен postgresql последней версии (`sudo apt install postgresql`)
 
 ## Выполнение задания
 
